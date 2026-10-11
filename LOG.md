@@ -9,43 +9,41 @@ honestly still counts for something.
 Delete the example before you submit.
 
 
+## CC-01 — "Search box behind everything"
 
-## Example — delete this
+**Reproduced:** When typing anything on the search box the suggestions were behind the category tabs.
 
-### CC-99 — "The cart total is wrong"
+**Cause:** when using dev tools I found that it was a layering problem due to incorrect z-index.
 
-**Reproduced:** Added 2 dosas at Rs. 60 each. The cart showed
-Rs. 119.99999 instead of Rs. 130. Happened every time, on any dish with
-a price ending in .50.
+**Fix:** changed the z-index to 100 that is much higher than other components
 
-**Cause:** The total was being added up with plain floating point and
-never rounded, so 0.1 + 0.2 style errors showed up on screen. The
-rounding helper existed but this one place was not using it.
+**Checked:** Search suggestions are now showing properly
 
-**Fix:** Ran the total through the existing rounding helper instead of
-adding a new one, so every price on screen goes through the same path.
+**Time:** About 10 mins
 
-**Checked:** Cart, checkout and the order screen all show Rs. 130 now.
-Prices without decimals still show without a trailing .00.
+## CC-02 — "Hard coded color in dark mode"
 
-**Time:** about 40 minutes, most of it working out that the cart and the
-order screen round in different places.
+**Reproduced:** When running the site in dark mode the color of text should change but it didn't.
 
+**Cause:** I first checked the color scheme in css file it was correct other colors were changed so only one component the text was not changing.
 
+**Fix:** I found the id using dev tools and found that the color was hardcoded instead of using -varInk fixed it.
 
-## CC-0X — "<the complaint, in short>"
+**Checked:** all the colors are showing according to the color scheme.
 
-**Reproduced:**
+**Time:** About 20 mins
 
-**Cause:**
+## CC-03 — "Mobile screen menu card clipping"
 
-**Fix:**
+**Reproduced:** In the dev tools I changed the width to about 600px and the problem appeared the right column of the menu grid does not shrink.
 
-**Checked:**
+**Cause:** I checked the responsive part in the css file for screens less than 760px wide the properties for .dish-card img is wrong they used width auto and min-width 100% this meant the image cannot shrink and the card was overflow:clip so the box changed the size according to image.
 
-**Time:**
+**Fix:** removed .name-btn { width: max-content; } and changed width to 100% this meant it will take size according to 2,1 grid
 
+**Checked:** The layout is now proper in each screen size.
 
+**Time:** About 20 mins
 
 ## Could not fix
 
