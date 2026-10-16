@@ -45,6 +45,92 @@ Delete the example before you submit.
 
 **Time:** About 20 mins
 
+## CC-04 — "Add to cart does not work on tablets "
+
+**Reproduced:** In the dev tools I changed the width to about 761px and the problem appeared that add to cart buttons are not working also the favorite star icon is not working too.
+
+**Cause:** This is due to a Pseudo element :active which is in CSS file with media query for tablets in line 1042 and 1043 the main issue was 2 pseudo elements were placed.
+
+**Fix:** I deleted all the lines that creates Pseudo elements
+
+**Checked:** The buttons work in all screen sizes.
+
+**Time:** About 20 mins
+
+## CC-05 — "The filters tab was scrolling away"
+
+**Reproduced:** I checked the site and found it was scrolling away not only in mobile but in every screen size.
+
+**Cause:** This is caused due to top=0 in .filters since header is also top 0 hence the filters scroll away.
+
+**Fix:** I changed top to 91.5px the total size of header and changed overflow-x to clip in mobile optimizations
+
+**Checked:** The filters stays on each screen size.
+
+**Time:** About 20 mins
+
+
+## CC-06 — "I ordered more than they had"
+
+**Reproduced:** The order validation only rejected a dish when its stock was zero, so an order quantity larger than the available stock could get through that check.
+
+**Cause:** `reserveStock` subtracted the requested quantity without checking whether enough stock was available.
+
+**Fix:** I added a stock check in `reserveStock` before subtracting the quantity, so it can reject an order when the requested amount is greater than the remaining stock.
+
+**Checked:** Verified that orders above available stock are rejected.
+
+**Time:** Not recorded
+
+## CC-07 — "Cancelling makes it worse"
+
+**Reproduced:** When an order was cancelled, the stock count for the ordered dish went down instead of going back up.
+
+**Cause:** `releaseStock` subtracted the cancelled quantity from the menu stock.
+
+**Fix:** I changed `releaseStock` to add the cancelled quantity back to stock.
+
+**Checked:** Verified that cancelled quantities are returned to stock.
+
+**Time:** Not recorded
+
+## CC-08 — "An old coupon still works"
+
+**Reproduced:** The expired `FRESHERS24` coupon was still accepted when pricing an order.
+
+**Cause:** `applyCoupon` checked coupon usage and order conditions, but did not reject coupons past their expiry date.
+
+**Fix:** I added an expiry check to `applyCoupon` so an expired coupon returns an error and no discount.
+
+**Checked:** Verified that expired coupons are rejected and unexpired coupons remain valid.
+
+**Time:** Not recorded
+
+## CC-09 — "The menu shows more dishes than it should"
+
+**Reproduced:** The menu request asked for five dishes per page, but the response returned the full dish list.
+
+**Cause:** `paginate` calculated the page slice but returned the original full list in its `items` field.
+
+**Fix:** I changed `paginate` to return the calculated `items` slice, so each response contains only the requested page.
+
+**Checked:** Verified that pagination returns only the requested page.
+
+**Time:** Not recorded
+
+## CC-10 — "Sorting by price is backwards"
+
+**Reproduced:** Selecting “Price: low to high” put the expensive dishes first, and “Price: high to low” put the cheaper dishes first.
+
+**Cause:** The price sort comparators were reversed in `SORTERS`.
+
+**Fix:** I swapped the comparator directions for `price-asc` and `price-desc`.
+
+**Checked:** Verified that both price sort directions work correctly.
+
+**Time:** Not recorded
+
+
 ## Could not fix
 
 For anything you investigated but did not solve. Say what you tried and
