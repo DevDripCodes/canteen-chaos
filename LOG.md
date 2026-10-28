@@ -80,7 +80,7 @@ Delete the example before you submit.
 
 **Checked:** Verified that orders above available stock are rejected.
 
-**Time:** Not recorded
+**Time:** 10 mins
 
 ## CC-07 — "Cancelling makes it worse"
 
@@ -92,7 +92,7 @@ Delete the example before you submit.
 
 **Checked:** Verified that cancelled quantities are returned to stock.
 
-**Time:** Not recorded
+**Time:** 5 mins
 
 ## CC-08 — "An old coupon still works"
 
@@ -104,7 +104,7 @@ Delete the example before you submit.
 
 **Checked:** Verified that expired coupons are rejected and unexpired coupons remain valid.
 
-**Time:** Not recorded
+**Time:** 25 mins
 
 ## CC-09 — "The menu shows more dishes than it should"
 
@@ -116,7 +116,7 @@ Delete the example before you submit.
 
 **Checked:** Verified that pagination returns only the requested page.
 
-**Time:** Not recorded
+**Time:** 30 mins
 
 ## CC-10 — "Sorting by price is backwards"
 
@@ -128,7 +128,7 @@ Delete the example before you submit.
 
 **Checked:** Verified that both price sort directions work correctly.
 
-**Time:** Not recorded
+**Time:** 10 mins
 
 
 ## Could not fix
